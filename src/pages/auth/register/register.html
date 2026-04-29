@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registro</title>
+  <link rel="stylesheet" href="../../../style.css" />
+</head>
+<body>
+
+  <main class="auth-container">
+    <section class="auth-card">
+
+      <h1>Crear cuenta</h1>
+
+      <form id="registerForm">
+
+        <input id="nombre" type="text" placeholder="Nombre" required />
+        <input id="apellido" type="text" placeholder="Apellido" required />
+        <input id="email" type="email" placeholder="Email" required />
+        <input id="celular" type="text" placeholder="Celular" required />
+        <input id="password" type="password" placeholder="Contraseña" required />
+
+        <button type="submit">Registrarse</button>
+
+      </form>
+
+      <p id="mensaje"></p>
+
+      <a href="../login/login.html">Ya tengo cuenta</a>
+
+    </section>
+  </main>
+
+  <script type="module" src="./register.ts"></script>
+</body>
+</html>
