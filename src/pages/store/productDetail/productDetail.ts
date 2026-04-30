@@ -76,18 +76,22 @@ async function loadProduct(): Promise<void> {
 
     productDetail.innerHTML = `
       <img src="${producto.imagen}" alt="${producto.nombre}" />
-      <div>
+
+      <div class="detail-info">
         <h2>${producto.nombre}</h2>
         <p>${producto.descripcion}</p>
+
         <p><strong>Precio:</strong> $${producto.precio}</p>
         <p><strong>Stock disponible:</strong> ${producto.stock}</p>
         <p><strong>Estado:</strong> ${producto.disponible ? "Disponible" : "No disponible"}</p>
 
-        <label for="quantity">Cantidad</label>
-        <input id="quantity" type="number" min="1" max="${producto.stock}" value="1" />
+        <div class="detail-actions">
+          <label for="quantity">Cantidad</label>
+          <input class="input quantity-input" id="quantity" type="number" min="1" max="${producto.stock}" value="1" />
 
-        <button id="addToCartBtn">Agregar al carrito</button>
-        <a href="../home/home.html">Volver</a>
+          <button class="btn btn-small" id="addToCartBtn">Agregar al carrito</button>
+          <a class="link" href="../home/home.html">Volver</a>
+        </div>
       </div>
     `;
 

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Productos</title>
+  <link rel="stylesheet" href="../../../style.css" />
+</head>
+<body>
+
+<header>
+  <h1>Gestión de Productos</h1>
+  <a href="../adminHome/adminHome.html">Volver</a>
+</header>
+
+<main>
+
+<button id="newProductBtn">Nuevo producto</button>
+
+<section id="productsList"></section>
+
+<section id="formContainer" class="hidden">
+
+  <h2 id="formTitle">Nuevo producto</h2>
+
+  <form id="productForm">
+
+    <input id="productId" type="hidden" />
+
+    <input id="nombre" placeholder="Nombre" required />
+    <textarea id="descripcion" placeholder="Descripción" required></textarea>
+
+    <input id="precio" type="number" placeholder="Precio" required />
+    <input id="stock" type="number" placeholder="Stock" required />
+
+    <select id="categoriaId"></select>
+
+    <input id="imagen" placeholder="URL imagen" required />
+
+    <label>
+      Disponible
+      <input id="disponible" type="checkbox" />
+    </label>
+
+    <button type="submit">Guardar</button>
+    <button type="button" id="cancelBtn">Cancelar</button>
+
+  </form>
+
+</section>
+
+<p id="message"></p>
+
+</main>
+
+<script type="module" src="./products.ts"></script>
+</body>
+</html>

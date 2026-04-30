@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin | Categorías</title>
+  <link rel="stylesheet" href="../../../style.css" />
+</head>
+<body>
+  <header>
+    <h1>Gestión de Categorías</h1>
+    <nav>
+      <a href="../adminHome/adminHome.html">Dashboard</a>
+      <a href="../products/products.html">Productos</a>
+      <a href="../orders/orders.html">Pedidos</a>
+      <button id="logoutBtn">Cerrar sesión</button>
+    </nav>
+  </header>
+
+  <main>
+    <button id="newCategoryBtn">Nueva categoría</button>
+
+    <section id="categoriesList"></section>
+
+    <section id="formContainer" class="form-container hidden">
+      <h2 id="formTitle">Nueva categoría</h2>
+
+      <form id="categoryForm">
+        <input id="categoryId" type="hidden" />
+
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" required />
+
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion"></textarea>
+
+        <label for="imagen">URL de imagen</label>
+        <input id="imagen" type="url" required />
+
+        <button type="submit">Guardar</button>
+        <button type="button" id="cancelBtn">Cancelar</button>
+      </form>
+    </section>
+
+    <p id="message"></p>
+  </main>
+
+  <script type="module" src="./categories.ts"></script>
+</body>
+</html>

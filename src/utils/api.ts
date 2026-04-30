@@ -83,6 +83,34 @@ export async function createCategoria(data: CategoriaRequest) {
   return res.json();
 }
 
+// Actualizar categoría
+export async function updateCategoria(id: number, data: CategoriaRequest): Promise<Categoria> {
+  const res = await fetch(`${BASE_URL}/categories/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (!res.ok) {
+    throw new Error("Error al actualizar categoría");
+  }
+
+  return res.json();
+}
+
+// Eliminar categoría
+export async function deleteCategoria(id: number): Promise<void> {
+  const res = await fetch(`${BASE_URL}/categories/${id}`, {
+    method: "DELETE"
+  });
+
+  if (!res.ok) {
+    throw new Error("Error al eliminar categoría");
+  }
+}
+
 // --- PRODUCTOS ---
 
 // Obtener todos los productos
@@ -122,6 +150,30 @@ export async function createProducto(data: ProductoRequest) {
   }
 
   return res.json();
+}
+
+// Actualizar producto
+export async function updateProducto(id: number, data: ProductoRequest) {
+  const res = await fetch(`${BASE_URL}/products/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  });
+
+  if (!res.ok) throw new Error("Error al actualizar producto");
+
+  return res.json();
+}
+
+// Eliminar producto
+export async function deleteProducto(id: number) {
+  const res = await fetch(`${BASE_URL}/products/${id}`, {
+    method: "DELETE"
+  });
+
+  if (!res.ok) throw new Error("Error al eliminar producto");
 }
 
 // --- PEDIDOS ---

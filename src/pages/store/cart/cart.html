@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Food Store | Carrito</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand">
+        <img src="/src/assets/logo-foodStore.png" alt="Food Store" class="brand-logo">
+        <h1 class="app-title">Carrito</h1>
+      </div>
+
+      <nav class="nav-links">
+        <a class="link" href="../home/home.html">Volver al catálogo</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container cart-layout">
+    <section class="card">
+      <h2 class="section-title">Productos seleccionados</h2>
+      <div id="cartItems" class="cart-items"></div>
+
+      <h3 class="cart-total">
+        Total: $<span id="total">0</span>
+      </h3>
+    </section>
+
+    <section class="card checkout-card">
+      <h2 class="section-title">Finalizar compra</h2>
+
+      <form id="checkoutForm" class="checkout-form">
+        <input class="input" id="telefono" type="text" placeholder="Teléfono" required />
+        <input class="input" id="direccion" type="text" placeholder="Dirección" required />
+
+        <select class="input" id="formaPago">
+          <option value="EFECTIVO">Efectivo</option>
+          <option value="TARJETA">Tarjeta</option>
+          <option value="TRANSFERENCIA">Transferencia</option>
+        </select>
+
+        <textarea class="input textarea" id="notas" placeholder="Notas (opcional)"></textarea>
+
+        <button class="btn" type="submit">Confirmar pedido</button>
+      </form>
+
+      <p id="mensaje" class="message"></p>
+    </section>
+  </main>
+
+  <script type="module" src="./cart.ts"></script>
+</body>
+</html>

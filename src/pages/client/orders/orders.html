@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Food Store | Detalle</title>
+  <title>Food Store | Mis pedidos</title>
   <link rel="stylesheet" href="/src/style.css" />
 </head>
 
@@ -13,22 +13,25 @@
     <div class="container header-content">
       <div class="brand">
         <img src="/src/assets/logo-foodStore.png" alt="Food Store" class="brand-logo">
-        <h1 class="app-title">Food Store</h1>
+        <h1 class="app-title">Mis pedidos</h1>
       </div>
 
       <nav class="nav-links">
-        <a class="link" href="../home/home.html">Inicio</a>
-        <a class="link" href="../cart/cart.html">Carrito <span id="cartCount">0</span></a>
+        <a class="link" href="../../store/home/home.html">Volver a la tienda</a>
       </nav>
     </div>
   </header>
 
-  <main class="container detail-container">
-    <section id="productDetail" class="card detail-card"></section>
+  <main class="container orders-layout">
+    <section class="card">
+      <h2 class="section-title">Historial de pedidos</h2>
 
-    <p id="message" class="message"></p>
+      <div id="ordersList" class="orders-list"></div>
+
+      <p id="message" class="message"></p>
+    </section>
   </main>
 
-  <script type="module" src="./productDetail.ts"></script>
+  <script type="module" src="./orders.ts"></script>
 </body>
 </html>

@@ -1,0 +1,137 @@
+import {
+  getProductos,
+  createProducto,
+  updateProducto,
+  deleteProducto,
+  getCategorias
+} from "../../../utils/api";
+
+import type { Producto, Categoria } from "../../../types/api";
+
+const list = document.getElementById("productsList")!;
+const formContainer = document.getElementById("formContainer")!;
+const form = document.getElementById("productForm") as HTMLFormElement;
+
+const message = document.getElementById("message")!;
+const newBtn = document.getElementById("newProductBtn")!;
+const cancelBtn = document.getElementById("cancelBtn")!;
+
+const productId = document.getElementById("productId") as HTMLInputElement;
+const nombre = document.getElementById("nombre") as HTMLInputElement;
+const descripcion = document.getElementById("descripcion") as HTMLTextAreaElement;
+const precio = document.getElementById("precio") as HTMLInputElement;
+const stock = document.getElementById("stock") as HTMLInputElement;
+const categoriaId = document.getElementById("categoriaId") as HTMLSelectElement;
+const imagen = document.getElementById("imagen") as HTMLInputElement;
+const disponible = document.getElementById("disponible") as HTMLInputElement;
+
+// Verifica admin
+const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
+
+if (!usuario || usuario.rol !== "ADMIN") {
+  window.location.href = "../../store/home/home.html";
+}
+
+// Carga categorías en select
+async function loadCategorias() {
+  const categorias = await getCategorias();
+
+  categoriaId.innerHTML = "";
+
+  categorias.forEach((c: Categoria) => {
+    const option = document.createElement("option");
+    option.value = String(c.id);
+    option.textContent = c.nombre;
+    categoriaId.appendChild(option);
+  });
+}
+
+// Render productos
+async function loadProductos() {
+  const productos = await getProductos();
+
+  list.innerHTML = "";
+
+  productos.forEach((p: Producto) => {
+    const div = document.createElement("div");
+
+    div.innerHTML = `
+      <h3>${p.nombre}</h3>
+      <p>$${p.precio}</p>
+      <p>Stock: ${p.stock}</p>
+      <button data-edit="${p.id}">Editar</button>
+      <button data-del="${p.id}">Eliminar</button>
+    `;
+
+    list.appendChild(div);
+  });
+
+  // Editar
+  document.querySelectorAll("[data-edit]").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const id = Number((btn as HTMLElement).dataset.edit);
+      const p = productos.find(x => x.id === id)!;
+
+      formContainer.classList.remove("hidden");
+
+      productId.value = String(p.id);
+      nombre.value = p.nombre;
+      descripcion.value = p.descripcion;
+      precio.value = String(p.precio);
+      stock.value = String(p.stock);
+      categoriaId.value = String(p.categoria.id);
+      imagen.value = p.imagen;
+      disponible.checked = p.disponible;
+    });
+  });
+
+  // Eliminar
+  document.querySelectorAll("[data-del]").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const id = Number((btn as HTMLElement).dataset.del);
+
+      if (!confirm("Eliminar producto?")) return;
+
+      await deleteProducto(id);
+      loadProductos();
+    });
+  });
+}
+
+// Guardar
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const data = {
+    nombre: nombre.value,
+    descripcion: descripcion.value,
+    precio: Number(precio.value),
+    stock: Number(stock.value),
+    categoriaId: Number(categoriaId.value),
+    imagen: imagen.value,
+    disponible: disponible.checked
+  };
+
+  if (productId.value) {
+    await updateProducto(Number(productId.value), data);
+    message.textContent = "Producto actualizado";
+  } else {
+    await createProducto(data);
+    message.textContent = "Producto creado";
+  }
+
+  form.reset();
+  formContainer.classList.add("hidden");
+  loadProductos();
+});
+
+newBtn.addEventListener("click", () => {
+  formContainer.classList.remove("hidden");
+});
+
+cancelBtn.addEventListener("click", () => {
+  formContainer.classList.add("hidden");
+});
+
+loadCategorias();
+loadProductos();

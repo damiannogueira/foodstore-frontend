@@ -33,15 +33,24 @@ function renderCategorias(categorias: Categoria[]): void {
   categorias.forEach((categoria) => {
     const btn = document.createElement("button");
     btn.textContent = categoria.nombre;
+    btn.className = "btn btn-category";
 
     btn.addEventListener("click", () => {
       categoriaSeleccionada = categoria.id;
+
+      // quitar active a todos
+      document.querySelectorAll(".btn-category").forEach(b => b.classList.remove("active"));
+
+      // marcar el actual
+      btn.classList.add("active");
+
       renderProductos();
     });
 
     categoriesList.appendChild(btn);
   });
 }
+
 // Filtra productos por búsqueda y categoría seleccionada
 function renderProductos(): void {
   const search = searchInput.value.toLowerCase();
@@ -85,7 +94,7 @@ function renderProductos(): void {
       <p>${producto.descripcion}</p>
       <strong>$${producto.precio}</strong>
       <span class="badge">${producto.disponible ? "Disponible" : "No disponible"}</span>
-      <a href="../productDetail/productDetail.html?id=${producto.id}">Ver detalle</a>
+      <a class="btn btn-small btn-detail" href="../productDetail/productDetail.html?id=${producto.id}"> Ver detalle </a>
     `;
 
     productsGrid.appendChild(card);
@@ -108,6 +117,10 @@ async function cargarDatos(): Promise<void> {
 
 allCategoriesBtn.addEventListener("click", () => {
   categoriaSeleccionada = null;
+
+  document.querySelectorAll(".btn-category").forEach(b => b.classList.remove("active"));
+  allCategoriesBtn.classList.add("active");
+
   renderProductos();
 });
 
