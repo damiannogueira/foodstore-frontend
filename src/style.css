@@ -453,3 +453,183 @@ body {
   width: 75px;
   text-align: center;
 }
+
+
+/* Admin Dashboard */
+/* Espaciado general del panel admin */
+.admin-layout {
+  margin-top: 20px;
+}
+
+/* Grilla de tarjetas del dashboard */
+.admin-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* Tarjeta individual de resumen */
+.admin-stat-card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+/* Título de cada estadística */
+.admin-stat-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+/* Número principal de cada tarjeta */
+.admin-stat-card p {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+
+/* Lista de pedidos en el panel admin */
+.admin-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.order-card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+}
+
+.order-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 10px;
+}
+
+.order-card p {
+  margin-bottom: 6px;
+}
+
+.order-card h4 {
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+.order-card ul {
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.order-status-select {
+  max-width: 220px;
+  margin: 8px 10px 0 0;
+}
+
+.update-status-btn {
+  width: auto;
+  margin-top: 8px;
+}
+
+/* Sección de gestión de productos en el panel admin */
+.hidden {
+  display: none;
+}
+
+.admin-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.admin-products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-product-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 15px;
+}
+
+.admin-product-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 6px;
+}
+
+.admin-product-card p {
+  margin-bottom: 4px;
+}
+
+.admin-product-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-form-card {
+  margin-top: 20px;
+}
+
+.admin-form {
+  display: grid;
+  gap: 12px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: bold;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Sección de gestión de categorías en el panel admin */
+.admin-categories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-card {
+  display: grid;
+  grid-template-columns: 90px 1fr auto;
+  align-items: center;
+  gap: 15px;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 15px;
+}
+
+.admin-card img {
+  width: 90px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.admin-category-info h3 {
+  color: var(--color-primary);
+  margin-bottom: 6px;
+}
+
+.admin-category-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}

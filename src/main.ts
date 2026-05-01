@@ -1,3 +1,5 @@
+// Este archivo no lo utilizo. (src/index.html es el punto de entrada).
+// El proyecto funciona como multipage (varios HTML independientes).
 import './style.css'
 import typescriptLogo from './assets/typescript.svg'
 import viteLogo from './assets/vite.svg'

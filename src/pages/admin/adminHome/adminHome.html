@@ -2,50 +2,56 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Admin Dashboard</title>
-  <link rel="stylesheet" href="../../../style.css" />
-</head>
-<body>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <header>
-    <h1>Panel Admin</h1>
-    <nav>
-      <a href="./adminHome.html">Dashboard</a>
-      <a href="../categories/categories.html">Categorías</a>
-      <a href="../products/products.html">Productos</a>
-      <a href="../orders/orders.html">Pedidos</a>
-      <button id="logoutBtn">Cerrar sesión</button>
-    </nav>
+  <title>Food Store | Admin</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+
+<body>
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand">
+        <img src="/src/assets/logo-foodStore.png" alt="Food Store" class="brand-logo">
+        <h1 class="app-title">Panel Admin</h1>
+      </div>
+
+      <nav class="nav-links">
+        <a class="link" href="./adminHome.html">Dashboard</a>
+        <a class="link" href="../categories/categories.html">Categorías</a>
+        <a class="link" href="../products/products.html">Productos</a>
+        <a class="link" href="../orders/orders.html">Pedidos</a>
+        <button class="btn btn-small" id="logoutBtn">Cerrar sesión</button>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main class="container admin-layout">
+    <section class="card">
+      <h2 class="section-title">Resumen</h2>
 
-    <h2>Resumen</h2>
+      <div class="admin-cards">
+        <div class="admin-stat-card">
+          <h3>Categorías</h3>
+          <p id="totalCategorias">0</p>
+        </div>
 
-    <section class="cards">
+        <div class="admin-stat-card">
+          <h3>Productos</h3>
+          <p id="totalProductos">0</p>
+        </div>
 
-      <div class="card">
-        <h3>Categorías</h3>
-        <p id="totalCategorias">0</p>
+        <div class="admin-stat-card">
+          <h3>Pedidos</h3>
+          <p id="totalPedidos">0</p>
+        </div>
+
+        <div class="admin-stat-card">
+          <h3>Disponibles</h3>
+          <p id="productosDisponibles">0</p>
+        </div>
       </div>
-
-      <div class="card">
-        <h3>Productos</h3>
-        <p id="totalProductos">0</p>
-      </div>
-
-      <div class="card">
-        <h3>Pedidos</h3>
-        <p id="totalPedidos">0</p>
-      </div>
-
-      <div class="card">
-        <h3>Disponibles</h3>
-        <p id="productosDisponibles">0</p>
-      </div>
-
     </section>
-
   </main>
 
   <script type="module" src="./adminHome.ts"></script>

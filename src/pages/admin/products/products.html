@@ -2,56 +2,67 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Productos</title>
-  <link rel="stylesheet" href="../../../style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Food Store | Productos</title>
+  <link rel="stylesheet" href="/src/style.css" />
 </head>
+
 <body>
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand">
+        <img src="/src/assets/logo-foodStore.png" alt="Food Store" class="brand-logo">
+        <h1 class="app-title">Gestión de Productos</h1>
+      </div>
 
-<header>
-  <h1>Gestión de Productos</h1>
-  <a href="../adminHome/adminHome.html">Volver</a>
-</header>
+      <nav class="nav-links">
+        <a class="link" href="../adminHome/adminHome.html">Volver</a>
+      </nav>
+    </div>
+  </header>
 
-<main>
+  <main class="container admin-layout">
+    <section class="card">
+      <div class="admin-section-header">
+        <h2 class="section-title">Productos</h2>
+        <button class="btn btn-small" id="newProductBtn">Nuevo producto</button>
+      </div>
 
-<button id="newProductBtn">Nuevo producto</button>
+      <section id="productsList" class="admin-products-list"></section>
+    </section>
 
-<section id="productsList"></section>
+    <section id="formContainer" class="card admin-form-card hidden">
+      <h2 id="formTitle" class="section-title">Nuevo producto</h2>
 
-<section id="formContainer" class="hidden">
+      <form id="productForm" class="admin-form">
+        <input id="productId" type="hidden" />
 
-  <h2 id="formTitle">Nuevo producto</h2>
+        <input class="input" id="nombre" placeholder="Nombre" required />
+        <textarea class="input textarea" id="descripcion" placeholder="Descripción" required></textarea>
 
-  <form id="productForm">
+        <input class="input" id="precio" type="number" placeholder="Precio" required />
+        <input class="input" id="stock" type="number" placeholder="Stock" required />
 
-    <input id="productId" type="hidden" />
+        <select class="input" id="categoriaId"></select>
 
-    <input id="nombre" placeholder="Nombre" required />
-    <textarea id="descripcion" placeholder="Descripción" required></textarea>
+        <input class="input" id="imagen" placeholder="URL imagen" required />
 
-    <input id="precio" type="number" placeholder="Precio" required />
-    <input id="stock" type="number" placeholder="Stock" required />
+        <label class="checkbox-row">
+          <input id="disponible" type="checkbox" />
+          Disponible
+        </label>
 
-    <select id="categoriaId"></select>
+        <div class="form-actions">
+          <button class="btn btn-small" type="submit">Guardar</button>
+          <button class="btn btn-secondary btn-small" type="button" id="cancelBtn">Cancelar</button>
+        </div>
+      </form>
+    </section>
 
-    <input id="imagen" placeholder="URL imagen" required />
+    <p id="message" class="message"></p>
+  </main>
 
-    <label>
-      Disponible
-      <input id="disponible" type="checkbox" />
-    </label>
-
-    <button type="submit">Guardar</button>
-    <button type="button" id="cancelBtn">Cancelar</button>
-
-  </form>
-
-</section>
-
-<p id="message"></p>
-
-</main>
-
-<script type="module" src="./products.ts"></script>
+  <script type="module" src="./products.ts"></script>
 </body>
 </html>

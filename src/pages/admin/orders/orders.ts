@@ -67,15 +67,14 @@ function renderPedidos(): void {
       </ul>
 
       <label for="estado-${pedido.id}">Nuevo estado</label>
-      <select id="estado-${pedido.id}" data-id="${pedido.id}">
-        ${estados.map((estado) => `
+      <select class="input order-status-select" id="estado-${pedido.id}" data-id="${pedido.id}">        ${estados.map((estado) => `
           <option value="${estado}" ${estado === pedido.estado ? "selected" : ""}>
             ${estado}
           </option>
         `).join("")}
       </select>
 
-      <button class="update-status-btn" data-id="${pedido.id}">
+      <button class="btn btn-small update-status-btn" data-id="${pedido.id}">
         Actualizar estado
       </button>
     `;

@@ -1,13 +1,14 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>foodstore-frontend</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<!--
+Este index redirige automáticamente al login.
+No uso SPA con main.ts, sino múltiples páginas HTML (login, home, etc.),
+por eso el punto de entrada real es el login.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0; url=/src/pages/auth/login/login.html" />
+  <title>Food Store</title>
+</head>
+<body></body>
 </html>

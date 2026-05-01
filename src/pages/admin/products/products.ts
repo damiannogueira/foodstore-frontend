@@ -11,11 +11,10 @@ import type { Producto, Categoria } from "../../../types/api";
 const list = document.getElementById("productsList")!;
 const formContainer = document.getElementById("formContainer")!;
 const form = document.getElementById("productForm") as HTMLFormElement;
-
+const formTitle = document.getElementById("formTitle") as HTMLHeadingElement;
 const message = document.getElementById("message")!;
 const newBtn = document.getElementById("newProductBtn")!;
 const cancelBtn = document.getElementById("cancelBtn")!;
-
 const productId = document.getElementById("productId") as HTMLInputElement;
 const nombre = document.getElementById("nombre") as HTMLInputElement;
 const descripcion = document.getElementById("descripcion") as HTMLTextAreaElement;
@@ -54,13 +53,19 @@ async function loadProductos() {
 
   productos.forEach((p: Producto) => {
     const div = document.createElement("div");
+    div.className = "admin-product-card";
 
     div.innerHTML = `
-      <h3>${p.nombre}</h3>
-      <p>$${p.precio}</p>
-      <p>Stock: ${p.stock}</p>
-      <button data-edit="${p.id}">Editar</button>
-      <button data-del="${p.id}">Eliminar</button>
+      <div>
+        <h3>${p.nombre}</h3>
+        <p><strong>Precio:</strong> $${p.precio}</p>
+        <p><strong>Stock:</strong> ${p.stock}</p>
+      </div>
+
+      <div class="admin-product-actions">
+        <button class="btn btn-small" data-edit="${p.id}">Editar</button>
+        <button class="btn btn-danger btn-small" data-del="${p.id}">Eliminar</button>
+      </div>
     `;
 
     list.appendChild(div);
@@ -68,22 +73,26 @@ async function loadProductos() {
 
   // Editar
   document.querySelectorAll("[data-edit]").forEach(btn => {
-    btn.addEventListener("click", async () => {
-      const id = Number((btn as HTMLElement).dataset.edit);
-      const p = productos.find(x => x.id === id)!;
+  btn.addEventListener("click", () => {
+    const id = Number((btn as HTMLElement).dataset.edit);
+    const p = productos.find(x => x.id === id);
+    if (!p) return;
+    const formTitle = document.getElementById("formTitle") as HTMLHeadingElement;
 
-      formContainer.classList.remove("hidden");
+    formContainer.classList.remove("hidden");
+    formContainer.scrollIntoView({ behavior: "smooth" });
+    formTitle.textContent = "Editar producto";
 
-      productId.value = String(p.id);
-      nombre.value = p.nombre;
-      descripcion.value = p.descripcion;
-      precio.value = String(p.precio);
-      stock.value = String(p.stock);
-      categoriaId.value = String(p.categoria.id);
-      imagen.value = p.imagen;
-      disponible.checked = p.disponible;
-    });
+    productId.value = String(p.id);
+    nombre.value = p.nombre;
+    descripcion.value = p.descripcion;
+    precio.value = String(p.precio);
+    stock.value = String(p.stock);
+    categoriaId.value = String(p.categoria.id);
+    imagen.value = p.imagen;
+    disponible.checked = p.disponible;
   });
+});
 
   // Eliminar
   document.querySelectorAll("[data-del]").forEach(btn => {
@@ -122,11 +131,18 @@ form.addEventListener("submit", async (e) => {
 
   form.reset();
   formContainer.classList.add("hidden");
+  formTitle.textContent = "Nuevo producto";
   loadProductos();
 });
 
 newBtn.addEventListener("click", () => {
+  form.reset();
+  productId.value = "";
+
+  formTitle.textContent = "Nuevo producto";
   formContainer.classList.remove("hidden");
+  formContainer.scrollIntoView({ behavior: "smooth" });
+  
 });
 
 cancelBtn.addEventListener("click", () => {

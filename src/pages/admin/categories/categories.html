@@ -2,46 +2,62 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Admin | Categorías</title>
-  <link rel="stylesheet" href="../../../style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Food Store | Categorías</title>
+  <link rel="stylesheet" href="/src/style.css" />
 </head>
+
 <body>
-  <header>
-    <h1>Gestión de Categorías</h1>
-    <nav>
-      <a href="../adminHome/adminHome.html">Dashboard</a>
-      <a href="../products/products.html">Productos</a>
-      <a href="../orders/orders.html">Pedidos</a>
-      <button id="logoutBtn">Cerrar sesión</button>
-    </nav>
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand">
+        <img src="/src/assets/logo-foodStore.png" alt="Food Store" class="brand-logo">
+        <h1 class="app-title">Gestión de Categorías</h1>
+      </div>
+
+      <nav class="nav-links">
+        <a class="link" href="../adminHome/adminHome.html">Dashboard</a>
+        <a class="link" href="../products/products.html">Productos</a>
+        <a class="link" href="../orders/orders.html">Pedidos</a>
+        <button class="btn btn-small" id="logoutBtn">Cerrar sesión</button>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <button id="newCategoryBtn">Nueva categoría</button>
+  <main class="container admin-layout">
+    <section class="card">
+      <div class="admin-section-header">
+        <h2 class="section-title">Categorías</h2>
+        <button class="btn btn-small" id="newCategoryBtn">Nueva categoría</button>
+      </div>
 
-    <section id="categoriesList"></section>
+      <section id="categoriesList" class="admin-categories-list"></section>
+    </section>
 
-    <section id="formContainer" class="form-container hidden">
-      <h2 id="formTitle">Nueva categoría</h2>
+    <section id="formContainer" class="card admin-form-card hidden">
+      <h2 id="formTitle" class="section-title">Nueva categoría</h2>
 
-      <form id="categoryForm">
+      <form id="categoryForm" class="admin-form">
         <input id="categoryId" type="hidden" />
 
         <label for="nombre">Nombre</label>
-        <input id="nombre" type="text" required />
+        <input class="input" id="nombre" type="text" required />
 
         <label for="descripcion">Descripción</label>
-        <textarea id="descripcion"></textarea>
+        <textarea class="input textarea" id="descripcion"></textarea>
 
         <label for="imagen">URL de imagen</label>
-        <input id="imagen" type="url" required />
+        <input class="input" id="imagen" type="url" required />
 
-        <button type="submit">Guardar</button>
-        <button type="button" id="cancelBtn">Cancelar</button>
+        <div class="form-actions">
+          <button class="btn btn-small" type="submit">Guardar</button>
+          <button class="btn btn-secondary btn-small" type="button" id="cancelBtn">Cancelar</button>
+        </div>
       </form>
     </section>
 
-    <p id="message"></p>
+    <p id="message" class="message"></p>
   </main>
 
   <script type="module" src="./categories.ts"></script>

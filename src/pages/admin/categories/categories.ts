@@ -12,11 +12,9 @@ const formContainer = document.getElementById("formContainer") as HTMLElement;
 const form = document.getElementById("categoryForm") as HTMLFormElement;
 const formTitle = document.getElementById("formTitle") as HTMLHeadingElement;
 const message = document.getElementById("message") as HTMLParagraphElement;
-
 const newCategoryBtn = document.getElementById("newCategoryBtn") as HTMLButtonElement;
 const cancelBtn = document.getElementById("cancelBtn") as HTMLButtonElement;
 const logoutBtn = document.getElementById("logoutBtn") as HTMLButtonElement;
-
 const categoryId = document.getElementById("categoryId") as HTMLInputElement;
 const nombre = document.getElementById("nombre") as HTMLInputElement;
 const descripcion = document.getElementById("descripcion") as HTMLTextAreaElement;
@@ -50,6 +48,8 @@ function showForm(categoria?: Categoria): void {
     form.reset();
     categoryId.value = "";
   }
+
+  formContainer.scrollIntoView({ behavior: "smooth" });
 }
 
 // Renderiza la tabla/lista de categorías
@@ -61,11 +61,17 @@ function renderCategorias(categorias: Categoria[]): void {
     card.className = "admin-card";
 
     card.innerHTML = `
-      <img src="${categoria.imagen}" alt="${categoria.nombre}" width="80" />
-      <h3>${categoria.nombre}</h3>
-      <p>${categoria.descripcion || "Sin descripción"}</p>
-      <button class="edit-btn" data-id="${categoria.id}">Editar</button>
-      <button class="delete-btn" data-id="${categoria.id}">Eliminar</button>
+      <img src="${categoria.imagen}" alt="${categoria.nombre}" />
+
+      <div class="admin-category-info">
+        <h3>${categoria.nombre}</h3>
+        <p>${categoria.descripcion || "Sin descripción"}</p>
+      </div>
+
+      <div class="admin-category-actions">
+        <button class="btn btn-small edit-btn" data-id="${categoria.id}">Editar</button>
+        <button class="btn btn-danger btn-small delete-btn" data-id="${categoria.id}">Eliminar</button>
+      </div>
     `;
 
     categoriesList.appendChild(card);
