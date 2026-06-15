@@ -18,10 +18,15 @@ form.addEventListener("submit", async (event) => {
     // Guardo la sesión en localStorage
     localStorage.setItem("usuario", JSON.stringify(usuario));
 
-    if (usuario.rol === "ADMIN") {
+    const rol = usuario.rol?.toUpperCase();
+
+    if (rol === "ADMIN") {
       window.location.href = "../../admin/adminHome/adminHome.html";
-    } else {
+    } else if (rol === "USUARIO") {
       window.location.href = "../../store/home/home.html";
+    } else {
+      localStorage.removeItem("usuario");
+      message.textContent = "Rol de usuario no válido.";
     }
   } catch (error) {
     message.textContent = "Email o contraseña incorrectos.";

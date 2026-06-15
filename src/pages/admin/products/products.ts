@@ -25,10 +25,16 @@ const imagen = document.getElementById("imagen") as HTMLInputElement;
 const disponible = document.getElementById("disponible") as HTMLInputElement;
 
 // Verifica admin
-const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
+const usuarioGuardado = localStorage.getItem("usuario");
 
-if (!usuario || usuario.rol !== "ADMIN") {
-  window.location.href = "../../store/home/home.html";
+if (!usuarioGuardado) {
+  window.location.href = "../../auth/login/login.html";
+}
+
+const usuario = JSON.parse(usuarioGuardado || "{}");
+
+if (usuario.rol?.toUpperCase() !== "ADMIN") {
+  window.location.href = "../../auth/login/login.html";
 }
 
 // Carga categorías en select

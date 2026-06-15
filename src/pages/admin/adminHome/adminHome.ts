@@ -1,13 +1,10 @@
-import { getCategorias, getProductos, getPedidos } from "../../../utils/api";
-import type { Producto } from "../../../types/api";
+import {
+  getCategorias,
+  getProductos,
+  getPedidos
+} from "../../../utils/api";
 
-const totalCategorias = document.getElementById("totalCategorias") as HTMLParagraphElement;
-const totalProductos = document.getElementById("totalProductos") as HTMLParagraphElement;
-const totalPedidos = document.getElementById("totalPedidos") as HTMLParagraphElement;
-const productosDisponibles = document.getElementById("productosDisponibles") as HTMLParagraphElement;
-const logoutBtn = document.getElementById("logoutBtn") as HTMLButtonElement;
-
-// Verifica usuario admin
+// Verifica si hay usuario logueado
 const usuarioGuardado = localStorage.getItem("usuario");
 
 if (!usuarioGuardado) {
@@ -16,13 +13,18 @@ if (!usuarioGuardado) {
 
 const usuario = JSON.parse(usuarioGuardado || "{}");
 
-// Si no es admin, lo sacamos
-if (usuario.rol !== "ADMIN") {
-  window.location.href = "../../store/home/home.html";
+if (usuario.rol?.toUpperCase() !== "ADMIN") {
+  window.location.href = "../../auth/login/login.html";
 }
 
-// Carga datos del dashboard
-async function loadDashboard(): Promise<void> {
+const totalCategorias = document.getElementById("totalCategorias") as HTMLElement;
+const totalProductos = document.getElementById("totalProductos") as HTMLElement;
+const totalPedidos = document.getElementById("totalPedidos") as HTMLElement;
+const productosDisponibles = document.getElementById("productosDisponibles") as HTMLElement;
+
+const logoutBtn = document.getElementById("logoutBtn") as HTMLButtonElement;
+
+async function cargarDashboard(): Promise<void> {
   try {
     const categorias = await getCategorias();
     const productos = await getProductos();
@@ -31,20 +33,18 @@ async function loadDashboard(): Promise<void> {
     totalCategorias.textContent = String(categorias.length);
     totalProductos.textContent = String(productos.length);
     totalPedidos.textContent = String(pedidos.length);
-
-    // Cuenta productos disponibles
-    const disponibles = productos.filter((p: Producto) => p.disponible).length;
-    productosDisponibles.textContent = String(disponibles);
-
+    productosDisponibles.textContent = String(
+      productos.filter((p) => p.disponible).length
+    );
   } catch (error) {
-    console.error("Error cargando dashboard");
+    console.error("Error al cargar dashboard", error);
   }
 }
 
-// Logout
 logoutBtn.addEventListener("click", () => {
   localStorage.removeItem("usuario");
+  localStorage.removeItem("carrito");
   window.location.href = "../../auth/login/login.html";
 });
 
-loadDashboard();
+cargarDashboard();

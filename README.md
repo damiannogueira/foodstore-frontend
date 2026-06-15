@@ -67,13 +67,15 @@ http://localhost:5173
 
 ## 🎥 Video demostrativo
 
-* [AGREGAR LINK DEL VIDEO]
+* [LINK DEL VIDEO (https://www.youtube.com/watch?v=6TnlF89yvPg)]
 
 ---
 
 ## 📄 Documentación (PDF)
 
-* [AGREGAR LINK DEL PDF]
+* [Informe TPI] (docs/TPI-Programación-3.pdf)
+
+* [Link de acceso a repositorio GitHub] (https://github.com/damiannogueira/foodstore-frontend.git)
 
 ---
 

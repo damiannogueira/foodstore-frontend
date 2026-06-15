@@ -97,14 +97,20 @@ export interface PedidoCreateRequest {
   detalles: PedidoDetalleRequest[];
 }
 
+export interface ProductoPedido {
+  id: number;
+  nombre: string;
+  precio: number;
+  stock: number;
+  imagen: string;
+  disponible: boolean;
+}
+
 export interface PedidoDetalleResponse {
   id?: number;
-  productoId?: number;
-  productoNombre?: string;
-  nombreProducto?: string;
   cantidad: number;
-  precioUnitario?: number;
   subtotal?: number;
+  producto: ProductoPedido;
 }
 
 export interface Pedido {

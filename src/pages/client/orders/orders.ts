@@ -11,7 +11,11 @@ if (!usuarioGuardado) {
   window.location.href = "../../auth/login/login.html";
 }
 
-const usuario = JSON.parse(usuarioGuardado || "{}") as { id: number };
+const usuario = JSON.parse(usuarioGuardado || "{}") as { id: number; rol: string };
+
+if (usuario.rol?.toUpperCase() === "ADMIN") {
+  window.location.href = "../../admin/adminHome/adminHome.html";
+}
 
 // Muestra los pedidos del usuario en pantalla
 function renderOrders(pedidos: Pedido[]): void {
@@ -38,7 +42,7 @@ function renderOrders(pedidos: Pedido[]): void {
       <ul>
         ${pedido.detalles.map((detalle) => `
           <li>
-            ${detalle.productoNombre || detalle.nombreProducto || "Producto"} -
+            ${detalle.producto.nombre} -
             Cantidad: ${detalle.cantidad} -
             Subtotal: $${detalle.subtotal ?? 0}
           </li>

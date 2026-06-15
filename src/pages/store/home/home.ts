@@ -19,6 +19,12 @@ if (!usuarioGuardado) {
   window.location.href = "../../auth/login/login.html";
 }
 
+const usuario = JSON.parse(usuarioGuardado || "{}");
+
+if (usuario.rol?.toUpperCase() === "ADMIN") {
+  window.location.href = "../../admin/adminHome/adminHome.html";
+}
+
 // Calcula la cantidad total de productos en el carrito
 function actualizarContadorCarrito(): void {
   const carrito = JSON.parse(localStorage.getItem("carrito") || "[]") as { cantidad: number }[];

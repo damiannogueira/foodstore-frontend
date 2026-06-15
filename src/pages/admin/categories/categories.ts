@@ -29,8 +29,8 @@ if (!usuarioGuardado) {
 
 const usuario = JSON.parse(usuarioGuardado || "{}");
 
-if (usuario.rol !== "ADMIN") {
-  window.location.href = "../../store/home/home.html";
+if (usuario.rol?.toUpperCase() !== "ADMIN") {
+  window.location.href = "../../auth/login/login.html";
 }
 
 // Muestra u oculta el formulario

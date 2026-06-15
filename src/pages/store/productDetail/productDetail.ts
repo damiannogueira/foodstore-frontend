@@ -19,6 +19,12 @@ if (!usuarioGuardado) {
   window.location.href = "../../auth/login/login.html";
 }
 
+const usuario = JSON.parse(usuarioGuardado || "{}");
+
+if (usuario.rol?.toUpperCase() === "ADMIN") {
+  window.location.href = "../../admin/adminHome/adminHome.html";
+}
+
 // Obtiene el carrito guardado en localStorage
 function getCart(): CartItem[] {
   return JSON.parse(localStorage.getItem("carrito") || "[]") as CartItem[];

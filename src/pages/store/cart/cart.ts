@@ -18,6 +18,18 @@ const direccion = document.getElementById("direccion") as HTMLInputElement;
 const formaPago = document.getElementById("formaPago") as HTMLSelectElement;
 const notas = document.getElementById("notas") as HTMLTextAreaElement;
 
+// Verifica si hay un usuario logueado
+const usuarioGuardado = localStorage.getItem("usuario");
+if (!usuarioGuardado) {
+  window.location.href = "../../auth/login/login.html";
+}
+
+const usuario = JSON.parse(usuarioGuardado || "{}");
+
+if (usuario.rol?.toUpperCase() === "ADMIN") {
+  window.location.href = "../../admin/adminHome/adminHome.html";
+}
+
 // Obtiene carrito desde localStorage
 function getCart(): CartItem[] {
   return JSON.parse(localStorage.getItem("carrito") || "[]");
@@ -81,8 +93,6 @@ form.addEventListener("submit", async (e) => {
     mensaje.textContent = "El carrito está vacío";
     return;
   }
-
-  const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
 
   try {
     await createPedido({

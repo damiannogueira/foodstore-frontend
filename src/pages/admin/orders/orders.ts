@@ -9,9 +9,15 @@ const logoutBtn = document.getElementById("logoutBtn") as HTMLButtonElement;
 let pedidos: Pedido[] = [];
 
 // Verifica que el usuario sea administrador
-const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
+const usuarioGuardado = localStorage.getItem("usuario");
 
-if (!usuario || usuario.rol !== "ADMIN") {
+if (!usuarioGuardado) {
+  window.location.href = "../../auth/login/login.html";
+}
+
+const usuario = JSON.parse(usuarioGuardado || "{}");
+
+if (usuario.rol?.toUpperCase() !== "ADMIN") {
   window.location.href = "../../auth/login/login.html";
 }
 
@@ -59,7 +65,7 @@ function renderPedidos(): void {
       <ul>
         ${pedido.detalles.map((detalle) => `
           <li>
-            ${detalle.productoNombre || detalle.nombreProducto || "Producto"} -
+            ${detalle.producto.nombre} -
             Cantidad: ${detalle.cantidad} -
             Subtotal: $${detalle.subtotal ?? 0}
           </li>
